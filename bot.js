@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WhatsApp Web - Chat Bot
 // @namespace    WACB
-// @version      0.4
+// @version      0.5
 // @description  A chat bot for WhatsApp Web, with some basic commands. Check console for log.
 // @author       Royalgamer06
 // @match        https://web.whatsapp.com/
@@ -12,7 +12,7 @@
 // @downloadURL    https://raw.githubusercontent.com/felipeds/WhatsAppBot/master/bot.js
 // ==/UserScript==
 
-//teste
+//teste2
 var botMSG = "";
 var last_msg = "";
 var jq = document.createElement('script');
