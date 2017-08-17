@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WhatsApp Web - Chat Bot
 // @namespace    WACB
-// @version      0.5.2
+// @version      0.5.3
 // @description  A chat bot for WhatsApp Web, with some basic commands. Check console for log.
 // @author       Royalgamer06
 // @match        https://web.whatsapp.com/
@@ -84,6 +84,7 @@ function listenToChat() {
 
 function sendImage()
 {
+    console.log("sending image");
     var img=document.createElement("img");
     img.src="https://lacphoto.org/berenice/wp-content/uploads/Test-Logo.svg.png"
     var evt = new Event('input', {
@@ -92,7 +93,9 @@ function sendImage()
     
     var input = document.querySelector("div.input");
     
-    appendChild(img);
+    input.append(img);
+    
+    console.log("image attached");
     
     document.querySelector(".icon-send").click();
     
