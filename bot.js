@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WhatsApp Web - Chat Bot
 // @namespace    WACB
-// @version      0.5.3
+// @version      0.5.5
 // @description  A chat bot for WhatsApp Web, with some basic commands. Check console for log.
 // @author       Royalgamer06
 // @match        https://web.whatsapp.com/
@@ -21,7 +21,7 @@ jq.onload = function() {
     console.log('jQuery loaded');
     setTimeout(Main, 3500);
 };
-jq.src = "//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js";
+jq.src = "http://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js";
 document.getElementsByTagName('head')[0].appendChild(jq);
 
 
@@ -82,24 +82,7 @@ function listenToChat() {
     }, 100);
 }
 
-function sendImage()
-{
-    console.log("sending image");
-    var img=document.createElement("img");
-    img.src="https://lacphoto.org/berenice/wp-content/uploads/Test-Logo.svg.png"
-    var evt = new Event('input', {
-        bubbles: true
-    });
-    
-    var input = document.querySelector("div.input");
-    
-    input.append(img);
-    
-    console.log("image attached");
-    
-    document.querySelector(".icon-send").click();
-    
-}
+
 
 function sendMessage(message) {
     console.log("BOT ENVIA:" + message);
@@ -200,6 +183,22 @@ function doReplacesAndSendReply(message)
     
 }
 
+function funTranslation(type, args)
+{
+    var url = "http://api.funtranslations.com/translate/"+type+".json?text=" + encodeURIComponent(args.join(" "));
+                console.log(url);
+
+                GM_xmlhttpRequest2({
+                    method: "GET",
+                    url: url,
+                    onload: function(response) {
+                        var json = JSON.parse(response.responseText);
+                        var cota  = json.contents.translated;
+                        sendMsg(cota);
+                    }
+                });
+}
+
 function wolfram(terms)
 {
     //http://api.wolframalpha.com/v1/result?appid=VR2P7Y-44JJE9H58P&i=
@@ -261,8 +260,8 @@ function doBotLogic(new_msg) {
             }
 
             if(cmd == "yoda")
-            {
-                var url = "http://api.funtranslations.com/translate/yoda.json?text=" + encodeURIComponent(args.join(" "));
+            {/*
+                /var url = "http://api.funtranslations.com/translate/yoda.json?text=" + encodeURIComponent(args.join(" "));
                 console.log(url);
 
                 GM_xmlhttpRequest2({
@@ -273,8 +272,13 @@ function doBotLogic(new_msg) {
                         var cota  = json.contents.translated;
                         sendMsg(cota);
                     }
-                });
+                });*/
+                funTranslation("yoda", args);
             }
+            if (cmd == "l33t")
+                {
+                    funTranslation("leetspeak", args);
+                }
             if(cmd == "weather")
             {
                 var ar = "Campinas";
@@ -357,10 +361,7 @@ function doBotLogic(new_msg) {
                     }
                 });
             }
-            if (cmd == "img")
-                {
-                    sendImage();
-                }
+            
             if (cmd == "wa") {
                 GM_xmlhttpRequest2({
                     method: "GET",
