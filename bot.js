@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WhatsApp Web - Chat Bot
 // @namespace    WACB
-// @version      0.5.1
+// @version      0.5.2
 // @description  A chat bot for WhatsApp Web, with some basic commands. Check console for log.
 // @author       Royalgamer06
 // @match        https://web.whatsapp.com/
@@ -12,7 +12,7 @@
 // @downloadURL    https://raw.githubusercontent.com/felipeds/WhatsAppBot/master/bot.js
 // ==/UserScript==
 
-//teste3
+//    
 var botMSG = "";
 var last_msg = "";
 var jq = document.createElement('script');
@@ -80,6 +80,22 @@ function listenToChat() {
     setInterval(function() {
         doBotLogic(jQuery(".selectable-text").last().text());
     }, 100);
+}
+
+function sendImage()
+{
+    var img=document.createElement("img");
+    img.src="https://lacphoto.org/berenice/wp-content/uploads/Test-Logo.svg.png"
+    var evt = new Event('input', {
+        bubbles: true
+    });
+    
+    var input = document.querySelector("div.input");
+    
+    appendChild(img);
+    
+    document.querySelector(".icon-send").click();
+    
 }
 
 function sendMessage(message) {
@@ -338,6 +354,10 @@ function doBotLogic(new_msg) {
                     }
                 });
             }
+            if (cmd == "img")
+                {
+                    sendImage();
+                }
             if (cmd == "wa") {
                 GM_xmlhttpRequest2({
                     method: "GET",
