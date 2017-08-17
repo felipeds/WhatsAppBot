@@ -21,7 +21,7 @@ jq.onload = function() {
     console.log('jQuery loaded');
     setTimeout(Main, 3500);
 };
-jq.src = "http://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js";
+jq.src = "//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js";
 document.getElementsByTagName('head')[0].appendChild(jq);
 
 
