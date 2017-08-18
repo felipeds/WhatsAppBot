@@ -141,8 +141,8 @@ function GM_xmlhttpRequest2()
 
         var rv = "*" +json['date'] + ":* ";
         rv += json['day']['condition']['text'];
-        rv += " *Max:* " + ( json['day']['maxtemp_c']).toFixed(1) + " C ";
-        rv += " *Min:* " + ( json['day']['mintemp_c']).toFixed(1) + " C\n";
+        rv += " *Min:* " + ( json['day']['mintemp_c']).toFixed(1) + " C ";
+        rv += " *Max:* " + ( json['day']['maxtemp_c']).toFixed(1) + " C\n";
 
         return rv;
     }
@@ -162,7 +162,7 @@ function GM_xmlhttpRequest2()
 
 function checkProfanity(text)
 {
-    
+    /* fail
     var url = "http://www.purgomalum.com/service/containsprofanity?text="+ encodeURIComponent(text);
         
 
@@ -177,7 +177,7 @@ function checkProfanity(text)
                     }
                 
             }
-        });
+        });*/
 }
 
     function doReplacesAndSendReply(message)
