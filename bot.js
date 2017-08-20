@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WhatsApp Web - Chat Bot
 // @namespace    WACB
-// @version      0.6.4
+// @version      0.7
 // @description  A chat bot for WhatsApp Web, with some basic commands. Check console for log.
 // @author       Royalgamer06
 // @match        https://web.whatsapp.com/
@@ -15,6 +15,7 @@
 //    
 var botMSG = "";
 var last_msg = "";
+var isBotRunning  = true;
 var jq = document.createElement('script');
 jq.onload = function() {
     jQuery.noConflict();
@@ -230,6 +231,7 @@ function checkProfanity(text)
     function doBotLogic(new_msg) {
 
         if (new_msg !== last_msg) {
+            
             console.log("[WACB] New chat message: \n" + new_msg);
 
             var ignore = false;
@@ -242,7 +244,24 @@ function checkProfanity(text)
             //  ignore = true;
             // }
             last_msg = new_msg;
-
+            if( new_msg.toLowerCase() == "hello marvin" && !ignore)
+            {
+                sendMsg("Hi") ;
+                isBotRunning = true;
+            }
+            
+            if( new_msg.toLowerCase() == "shut up marvin" && !ignore)
+            {
+                if(isBotRunning)
+                    {
+                sendMsg("ok I'll shut up for now, if you want me to talk again just say 'Hello Marvin'") ;
+                isBotRunning = false;
+                    }
+            }
+            if(!isBotRunning){
+                return;
+            }
+            
             if( new_msg.toLowerCase().indexOf("3d") !== -1 && !ignore)
             {
                 sendMsg("3D can die in a fire") ;
@@ -252,10 +271,7 @@ function checkProfanity(text)
             {
                 sendMsg("You are welcome my friend.") ;
             }
-            if( new_msg.toLowerCase() == "hello marvin" && !ignore)
-            {
-                sendMsg("Hi") ;
-            }
+            
             if(!ignore)
             {
                 doReplacesAndSendReply(new_msg);
