@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WhatsApp Web - Chat Bot
 // @namespace    WACB
-// @version      0.7.1
+// @version      0.7.2
 // @description  A chat bot for WhatsApp Web, with some basic commands. Check console for log.
 // @author       Royalgamer06
 // @match        https://web.whatsapp.com/
@@ -290,6 +290,14 @@ function checkProfanity(text)
                     if(args.length > 0)
                     {
                         sendMsg("http://lmgtfy.com/?q="+ args.join("+"));
+
+                    }
+                }
+                if(cmd == "t")
+                {
+                    if(args.length > 0)
+                    {
+                        sendMsg("Boa Thia!");
 
                     }
                 }
